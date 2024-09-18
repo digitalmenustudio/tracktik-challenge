@@ -1,25 +1,26 @@
 import axios from "axios";
-import { Client } from "@/types/client";
+import { Site, Client } from "@/types/index";
 
+// Base API URL
 const API_URL = "https://tracktik-challenge.staffr.com";
 
-// Fetch clients with pagination and filtering
-export const fetchClients = async (page: number, filter: string): Promise<Client[]> => {
+// Fetch sites with pagination and filtering
+export const fetchSites = async (page: number, filter: string): Promise<Site[]> => {
   try {
-    const response = await axios.get<Client[]>(
-      `${API_URL}/clients?_page=${page}&_limit=5&givenName_like=${filter}`
+    const response = await axios.get<Site[]>(
+      `${API_URL}/sites?_page=${page}&_limit=9&title_like=${filter}`
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching clients:", error);
+    console.error("Error fetching sites:", error);
     throw error;
   }
 };
 
-// Fetch a specific client by ID
-export const fetchClientById = async (id: number): Promise<Client> => {
+// Fetch client details by client ID
+export const fetchClientById = async (clientId: string): Promise<Client> => {
   try {
-    const response = await axios.get<Client>(`${API_URL}/clients/${id}`);
+    const response = await axios.get<Client>(`${API_URL}/clients/${clientId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching client details:", error);
