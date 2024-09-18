@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react"; // Import Search icon
-import { fetchSites } from "@/lib/api"; // API Helper for sites
-import { Site } from "@/types"; // Type
+import { Search } from "lucide-react"; 
+import { fetchSites } from "@/lib/api";
+import { Site } from "@/types"; 
 
 export default function Navbar() {
-  const [filter, setFilter] = useState<string>(""); // Search input state
-  const [filteredSites, setFilteredSites] = useState<Site[]>([]); // Filtered results
-  const [showResults, setShowResults] = useState<boolean>(false); // Show or hide the results
-  const [searchVisible, setSearchVisible] = useState<boolean>(false); // Controls visibility of search field
+  const [filter, setFilter] = useState<string>("");
+  const [filteredSites, setFilteredSites] = useState<Site[]>([]);
+  const [showResults, setShowResults] = useState<boolean>(false);
+  const [searchVisible, setSearchVisible] = useState<boolean>(false);
 
   // Toggle the search input field when clicking the search icon or text
   const handleToggleSearch = () => {
@@ -18,7 +18,7 @@ export default function Navbar() {
     const filterInput = document.getElementById("navbar-filter-input");
     if (filterInput && !searchVisible) {
       filterInput.focus();
-      setShowResults(true); // Show results when focused
+      setShowResults(true);
     }
   };
 
@@ -39,7 +39,7 @@ export default function Navbar() {
   }, [filter]);
 
   return (
-    <nav className="bg-white shadow-md py-4 relative px-2">
+    <nav className="bg-white shadow-md py-4 relative px-2 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-blue-600">
           Tracktik
@@ -64,7 +64,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`absolute top-16 left-0 w-full transition-transform duration-300 ease-in-out ${
+        className={`absolute top-16 left-0 w-full transition-transform duration-300 ease-in-out z-50 ${
           searchVisible ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
         } origin-top bg-white border-t border-gray-200`}
       >
@@ -80,7 +80,7 @@ export default function Navbar() {
           />
 
           {showResults && filteredSites.length > 0 && (
-            <ul className="bg-white border border-gray-200 rounded-lg shadow-lg mt-2">
+            <ul className="bg-white border border-gray-200 rounded-lg shadow-lg mt-2 z-50">
               {filteredSites.map((site) => (
                 <li
                   key={site.id}
