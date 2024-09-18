@@ -42,7 +42,7 @@ export default function Navbar() {
     <nav className="bg-white shadow-md py-4 relative px-2 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-blue-600">
-          Tracktik
+          TrackTik
         </Link>
 
         <ul className="flex space-x-6 text-gray-700 font-medium items-center">
