@@ -17,6 +17,17 @@ export const fetchSites = async (page: number, filter: string): Promise<Site[]> 
   }
 };
 
+// Fetch specific site by ID
+export const fetchSiteById = async (id: string): Promise<Site> => {
+    try {
+        const response = await axios.get<Site>(`${API_URL}/sites/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching site details:", error);
+        throw error;
+    }
+};
+
 // Fetch client details by client ID
 export const fetchClientById = async (clientId: string): Promise<Client> => {
   try {
